@@ -1,4 +1,4 @@
-# tap-dhlecommerce
+# tap-dhl-ecommerce
 
 `tap-dhl-ecommerce` is a Singer tap for DHL eCommerce Americas.
 
