@@ -1,21 +1,19 @@
-# tap-applovin
+# tap-dhl-ecommerce
 
-`tap-applovin` is a Singer tap for applovin.
+`tap-dhl-ecommerce` is a Singer tap for DHL eCommerce Americas.
 
 Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 
 ## Features
-- Leverages the `report` endpoint from the [Applovin API](https://developers.applovin.com/en/audience-plus/reporting-api)
-in order to grab hourly summaries
-of ad performance by campaign, creative, country, and platform.
-- Configure the date range you want to grab data from using the `report_range_days` config variable.
+- Leverages the `tracking` endpoint from the [DHL eCommerce Americas API](https://docs.api.dhlecs.com/)
+in order to grab package tracking status updates.
 - Built with the Singer SDK for extensibility and Meltano compatibility.
 
 ## Requirements
 
 - Python 3.9+
 
-- Applovin API key
+- DHL eCommerce Americas Client ID & Secret
 
 - Singer SDK
 
@@ -25,8 +23,8 @@ of ad performance by campaign, creative, country, and platform.
 
 1. Clone the repository:
   ```bash
-  git clone https://github.com/yourusername/tap-applovin.git
-  cd tap-applovin
+  git clone https://github.com/fixdauto/tap-dhl-ecommerce.git
+  cd tap-dhl-ecommerce
   ```
 2. Install the dependencies:
   ```bash
@@ -42,13 +40,16 @@ of ad performance by campaign, creative, country, and platform.
 1. Create a config.json file with the following structure:
   ```bash
   {
-    "api_key": "YOUR_APPOVIN_API_KEY",
-    "report_range_days": 30
+    "pickup_id": "YOUR_DHL_ACCOUNT_PICKUP_ID",
+    "client_id": "YOUR_DHL_CLIENT_ID",
+    "client_secret": "YOUR_DHL_CLIENT_SECRET"
   }
   ```
-  - `api_key`: Your Applovin API key.
+  - `pickup_id`: Your DHL eCommerce Americas account pickup ID.
 
-  - `report_range_days`: Number of days of data to fetch (e.g., 30 for the last 30 days).
+  - `client_id`: Your DHL eCommerce Americas client ID.
+
+  - `client_secret`: Your DHL eCommerce Americas client secret.
 
 2. Place config.json in the root directory or pass its path as an argument when running the tap.
 
@@ -56,24 +57,25 @@ of ad performance by campaign, creative, country, and platform.
 
 1. Run the tap standalone:
   ```bash
-  poetry run python -m tap_applovin --config config.json
+  poetry run python -m tap_dhl_ecommerce --config config.json
   ```
 2. Use with Meltano for pipeline orchestration:
   - Add the tap to your Meltano project:
   ```bash
-  meltano add extractor tap-applovin
+  meltano add extractor tap-dhl-ecommerce
   ```
   - Configure the tap in meltano.yml:
   ```bash
   extractors:
-    tap-applovin:
+    tap-dhl-ecommerce:
       config:
-        api_key: YOUR_APPOVIN_API_KEY
-        report_range_days: 30
+        pickup_id: YOUR_DHL_ACCOUNT_PICKUP_ID
+        client_id: YOUR_DHL_CLIENT_ID
+        client_secret: YOUR_DHL_CLIENT_SECRET
   ```
   - Run the tap via Meltano:
   ```bash
-  meltano run tap-applovin target-your-target
+  meltano run tap-dhl-ecommerce target-your-target
   ```
 
 ### Accepted Config Options
@@ -82,7 +84,7 @@ A full list of supported settings and capabilities for this
 tap is available by running:
 
 ```bash
-tap-applovin --about
+tap-dhl-ecommerce --about
 ```
 
 ### Configure using environment variables
@@ -99,7 +101,7 @@ Next, install Meltano (if you haven't already) and any needed plugins:
 # Install meltano
 pipx install meltano
 # Initialize meltano within this directory
-cd tap-applovin
+cd tap-dhl-ecommerce
 meltano install
 ```
 
@@ -107,20 +109,18 @@ Now you can test and orchestrate using Meltano:
 
 ```bash
 # Test invocation:
-meltano invoke tap-applovin --version
+meltano invoke tap-dhl-ecommerce --version
 # OR run a test `elt` pipeline:
-meltano run tap-applovin target-jsonl
+meltano run tap-dhl-ecommerce target-jsonl
 ```
 
 ## Customization
 
 The streams.py file provides the main logic for fetching and processing data. Key points
 of customization include:
-- **Columns:** Update the columns list to fetch additional fields.
+- **Date Range:** Modify the date range being requested by changing the `start_date` variable in the `get_records` method.
 
-- **Date Range:** Modify the date_range method to adjust date partitioning.
-
-- **API Parameters:** Customize the get_url_params method to include additional query parameters.
+- **Date Interval:** This script defaults to requesting data day by day, but that can be adjusted by changing the `interval_in_days` parameter in the `date_range` method.
 
 ## Development
 
