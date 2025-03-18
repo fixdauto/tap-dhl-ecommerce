@@ -1,13 +1,13 @@
 version: 1
 send_anonymous_usage_stats: true
-project_id: "tap-applovin"
+project_id: "tap-dhl-ecommerce"
 default_environment: test
 environments:
 - name: test
 plugins:
   extractors:
-  - name: "tap-applovin"
-    namespace: "tap_applovin"
+  - name: "tap-dhl-ecommerce"
+    namespace: "tap_dhl_ecommerce"
     pip_url: -e .
     capabilities:
     - state
@@ -16,7 +16,9 @@ plugins:
     - about
     - stream-maps
     config:
-      report_range_days: 15
+      pickup_id: $DHL_ECOMMERCE_PICKUP_ID
+      client_id: $DHL_ECOMMERCE_CLIENT_ID
+      client_secret: $DHL_ECOMMERCE_CLIENT_SECRET_KEY
 
   loaders:
   - name: target-jsonl
