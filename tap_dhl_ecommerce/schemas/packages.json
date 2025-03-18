@@ -1,0 +1,140 @@
+{
+    "properties": {
+        "dhl_package_id": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "customer_package_id": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "label_created_at": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time"
+        },
+        "package_product_name": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "package_product_class": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "package_weight_lbs": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "recipient_city": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "recipient_state": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "recipient_country": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "recipient_postal_code": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "is_delivered": {
+            "type": [
+                "boolean",
+                "null"
+            ]
+        },
+        "delivered_at": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time"
+        },
+        "events": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "type": [
+                    "object",
+                    "null"
+                ],
+                "properties": {
+                    "location": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "date": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "time": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "timeZone": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "postalCode": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "country": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "primaryEventId": {
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "primaryEventDescription": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

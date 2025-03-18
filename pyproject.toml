@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "tap-applovin"
+name = "tap-dhl-ecommerce"
 version = "0.0.1"
-description = "Singer tap for applovin, built with the Meltano Singer SDK."
+description = "Singer tap for DHL Ecommerce Americas API, built with the Meltano Singer SDK."
 readme = "README.md"
 authors = ["Ryan Bell <ryanbell3669@gmail.com>"]
 keywords = [
     "ELT",
-    "applovin",
+    "DHL Ecommerce",
 ]
 classifiers = [
     "Intended Audience :: Developers",
@@ -25,6 +25,7 @@ singer-sdk = { version="~=0.43.1", extras = [] }
 fs-s3fs = { version = "~=1.1.1", optional = true }
 requests = "~=2.32.3"
 python-dateutil = "~=2.8.2"
+pandas = "~=2.2.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8"
@@ -62,4 +63,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 # CLI declaration
-tap-applovin = 'tap_applovin.tap:Tapapplovin.cli'
+tap-dhl-ecommerce = 'tap_dhl_ecommerce.tap:Tapdhlecommerce.cli'
